@@ -1,0 +1,590 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="forooshModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFamily" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserTel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="UserUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="UserAge" Type="Byte" />
+    <Property Name="UserGender" Type="Byte" />
+    <Property Name="UserActive" Type="Byte" />
+    <Property Name="UserStartDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customers" Relationship="forooshModel.FK_Customr_UserID" FromRole="User" ToRole="Customer" />
+    <NavigationProperty Name="ProductPrices" Relationship="forooshModel.FK_ProductPrice_UserID" FromRole="User" ToRole="ProductPrice" />
+    <NavigationProperty Name="Inventories" Relationship="forooshModel.FK_Inventory_UserID" FromRole="User" ToRole="Inventory" />
+    <NavigationProperty Name="Products" Relationship="forooshModel.FK_Product_UserId" FromRole="User" ToRole="Product" />
+    <NavigationProperty Name="Userlogs" Relationship="forooshModel.FK_UserLog_UserID" FromRole="User" ToRole="Userlog" />
+    <NavigationProperty Name="Invoices" Relationship="forooshModel.FK_invoice_userid" FromRole="User" ToRole="Invoice" />
+  </EntityType>
+  <EntityContainer Name="forooshEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Vw_Users" EntityType="forooshModel.Vw_Users" />
+    <EntitySet Name="Customers" EntityType="forooshModel.Customer" />
+    <EntitySet Name="Vw_Customer" EntityType="forooshModel.Vw_Customer" />
+    <AssociationSet Name="FK_Customr_UserID" Association="forooshModel.FK_Customr_UserID">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <EntitySet Name="ProductPrices" EntityType="forooshModel.ProductPrice" />
+    <EntitySet Name="Vw_ProductPrice" EntityType="forooshModel.Vw_ProductPrice" />
+    <AssociationSet Name="FK_ProductPrice_UserID" Association="forooshModel.FK_ProductPrice_UserID">
+      <End Role="User" EntitySet="Users" />
+      <End Role="ProductPrice" EntitySet="ProductPrices" />
+    </AssociationSet>
+    <EntitySet Name="Inventories" EntityType="forooshModel.Inventory" />
+    <EntitySet Name="vw_Inventory" EntityType="forooshModel.vw_Inventory" />
+    <AssociationSet Name="FK_Inventory_UserID" Association="forooshModel.FK_Inventory_UserID">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Inventory" EntitySet="Inventories" />
+    </AssociationSet>
+    <FunctionImport Name="Sp_ins_product">
+      <Parameter Name="ProductName" Mode="In" Type="String" />
+      <Parameter Name="ProductDesc" Mode="In" Type="String" />
+      <Parameter Name="ProductImage" Mode="In" Type="Binary" />
+      <Parameter Name="ProductStartDate" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_int_product">
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="ProductName" Mode="In" Type="String" />
+      <Parameter Name="ProuctDesc" Mode="In" Type="String" />
+      <Parameter Name="ProductImage" Mode="In" Type="Binary" />
+      <Parameter Name="ProductStartDate" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Products" EntityType="forooshModel.Product" />
+    <AssociationSet Name="FK_Product_UserId" Association="forooshModel.FK_Product_UserId">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_ProductID" Association="forooshModel.FK_Inventory_ProductID">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Inventory" EntitySet="Inventories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPrice_ProductId" Association="forooshModel.FK_ProductPrice_ProductId">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductPrice" EntitySet="ProductPrices" />
+    </AssociationSet>
+    <FunctionImport Name="Sp_ins_product1">
+      <Parameter Name="ProductName" Mode="In" Type="String" />
+      <Parameter Name="ProductDesc" Mode="In" Type="String" />
+      <Parameter Name="ProductImage" Mode="In" Type="Binary" />
+      <Parameter Name="ProductStartDate" Mode="In" Type="String" />
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_UpdateFee_Product">
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="ProductLastFee" Mode="In" Type="Int64" />
+      <Parameter Name="ProductLastPurchFee" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_Update_ProductLastStock">
+      <Parameter Name="InventoryCount" Mode="In" Type="Int32" />
+      <Parameter Name="productId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Userlogs" EntityType="forooshModel.Userlog" />
+    <AssociationSet Name="FK_UserLog_UserID" Association="forooshModel.FK_UserLog_UserID">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Userlog" EntitySet="Userlogs" />
+    </AssociationSet>
+    <FunctionImport Name="Sp_Update_ExitDate">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="ExitDate" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="vw_userlog" EntityType="forooshModel.vw_userlog" />
+    <FunctionImport Name="Sp_Update_product">
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="ProductName" Mode="In" Type="String" />
+      <Parameter Name="ProductDesc" Mode="In" Type="String" />
+      <Parameter Name="ProductImage" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <EntitySet Name="Vw_product" EntityType="forooshModel.Vw_product" />
+    <EntitySet Name="DataHistories" EntityType="forooshModel.DataHistory" />
+    <FunctionImport Name="Sp_Update_product2">
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+      <Parameter Name="ProductName" Mode="In" Type="String" />
+      <Parameter Name="ProductDesc" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Invoices" EntityType="forooshModel.Invoice" />
+    <AssociationSet Name="FK_CustomerID" Association="forooshModel.FK_CustomerID">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_invoice_userid" Association="forooshModel.FK_invoice_userid">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <EntitySet Name="InvoiceItems" EntityType="forooshModel.InvoiceItem" />
+    <AssociationSet Name="FK_InvoiceID_invoiceitem" Association="forooshModel.FK_InvoiceID_invoiceitem">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="InvoiceItem" EntitySet="InvoiceItems" />
+    </AssociationSet>
+    <EntitySet Name="Vw_InvoiceItem" EntityType="forooshModel.Vw_InvoiceItem" />
+    <AssociationSet Name="FK_ProuctID_invoiceitem" Association="forooshModel.FK_ProuctID_invoiceitem">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="InvoiceItem" EntitySet="InvoiceItems" />
+    </AssociationSet>
+    <EntitySet Name="vw_invoice" EntityType="forooshModel.vw_invoice" />
+    <FunctionImport Name="Sp_Foroosh_Chart" ReturnType="Collection(forooshModel.Sp_Foroosh_Chart_Result)" />
+    <FunctionImport Name="Sp_CustomerForooshChart" ReturnType="Collection(forooshModel.Sp_CustomerForooshChart_Result)" />
+    <FunctionImport Name="Sp_Productforooshchart" ReturnType="Collection(forooshModel.Sp_Productforooshchart_Result)" />
+    <EntitySet Name="sysdiagrams" EntityType="forooshModel.sysdiagram" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(forooshModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(forooshModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <EntityType Name="Vw_Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFamily" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserTel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="UserUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="UserAge" Type="Byte" />
+    <Property Name="UserGender" Type="Byte" />
+    <Property Name="UserActive" Type="Byte" />
+    <Property Name="UserStartDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserGenderFarsi" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="UserActivefarsi" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="151" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerTell" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StartDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="forooshModel.FK_Customr_UserID" FromRole="Customer" ToRole="User" />
+    <Property Name="CustomerActive" Type="Byte" />
+    <NavigationProperty Name="Invoices" Relationship="forooshModel.FK_CustomerID" FromRole="Customer" ToRole="Invoice" />
+  </EntityType>
+  <EntityType Name="Vw_Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+      <PropertyRef Name="CustomerName" />
+      <PropertyRef Name="StartDate" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerTell" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StartDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFamily" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="151" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerActive" Type="Byte" />
+  </EntityType>
+  <Association Name="FK_Customr_UserID">
+    <End Type="forooshModel.User" Role="User" Multiplicity="1" />
+    <End Type="forooshModel.Customer" Role="Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ProductPrice">
+    <Key>
+      <PropertyRef Name="ProductPriceId" />
+    </Key>
+    <Property Name="ProductPriceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductPricePurch" Type="Int64" Nullable="false" />
+    <Property Name="ProductPriceSell" Type="Int64" Nullable="false" />
+    <Property Name="ProductPriceDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ProductPriceDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="forooshModel.FK_ProductPrice_UserID" FromRole="ProductPrice" ToRole="User" />
+    <NavigationProperty Name="Product" Relationship="forooshModel.FK_ProductPrice_ProductId" FromRole="ProductPrice" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Vw_ProductPrice">
+    <Key>
+      <PropertyRef Name="ProductPriceId" />
+      <PropertyRef Name="ProductPricePurch" />
+      <PropertyRef Name="ProductPriceSell" />
+      <PropertyRef Name="ProductPriceDate" />
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="ProductName" />
+    </Key>
+    <Property Name="ProductPriceId" Type="Int32" Nullable="false" />
+    <Property Name="ProductPricePurch" Type="Int64" Nullable="false" />
+    <Property Name="ProductPriceSell" Type="Int64" Nullable="false" />
+    <Property Name="ProductPriceDate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ProductPriceDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFamily" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="151" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_ProductPrice_UserID">
+    <End Type="forooshModel.User" Role="User" Multiplicity="1" />
+    <End Type="forooshModel.ProductPrice" Role="ProductPrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ProductPrice">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="InventoryID" />
+    </Key>
+    <Property Name="InventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InventoryCount" Type="Int32" Nullable="false" />
+    <Property Name="InventoryDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="InventoryDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="forooshModel.FK_Inventory_UserID" FromRole="Inventory" ToRole="User" />
+    <NavigationProperty Name="Product" Relationship="forooshModel.FK_Inventory_ProductID" FromRole="Inventory" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="vw_Inventory">
+    <Key>
+      <PropertyRef Name="InventoryID" />
+      <PropertyRef Name="InventoryCount" />
+      <PropertyRef Name="InventoryDate" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="ProductName" />
+    </Key>
+    <Property Name="InventoryID" Type="Int32" Nullable="false" />
+    <Property Name="InventoryCount" Type="Int32" Nullable="false" />
+    <Property Name="InventoryDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="InventoryDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFamily" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="151" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Inventory_UserID">
+    <End Type="forooshModel.User" Role="User" Multiplicity="1" />
+    <End Type="forooshModel.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProductLastFee" Type="Int64" />
+    <Property Name="ProductLastSuply" Type="Int32" Nullable="false" />
+    <Property Name="ProductImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductStartDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="forooshModel.FK_Product_UserId" FromRole="Product" ToRole="User" />
+    <NavigationProperty Name="Inventories" Relationship="forooshModel.FK_Inventory_ProductID" FromRole="Product" ToRole="Inventory" />
+    <NavigationProperty Name="ProductPrices" Relationship="forooshModel.FK_ProductPrice_ProductId" FromRole="Product" ToRole="ProductPrice" />
+    <Property Name="ProductActive" Type="Byte" />
+    <Property Name="LastPurchFee" Type="Int64" />
+    <NavigationProperty Name="InvoiceItems" Relationship="forooshModel.FK_ProuctID_invoiceitem" FromRole="Product" ToRole="InvoiceItem" />
+  </EntityType>
+  <Association Name="FK_Product_UserId">
+    <End Type="forooshModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="forooshModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_ProductID">
+    <End Type="forooshModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="forooshModel.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductPrice_ProductId">
+    <End Type="forooshModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="forooshModel.ProductPrice" Role="ProductPrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductPrice">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Userlog">
+    <Key>
+      <PropertyRef Name="UserLogId" />
+    </Key>
+    <Property Name="UserLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ComputerName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="IPAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="EnterDateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ExitDateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="forooshModel.FK_UserLog_UserID" FromRole="Userlog" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_UserLog_UserID">
+    <End Type="forooshModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="forooshModel.Userlog" Role="Userlog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Userlog">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vw_userlog">
+    <Key>
+      <PropertyRef Name="UserLogId" />
+    </Key>
+    <Property Name="UserLogId" Type="Int32" Nullable="false" />
+    <Property Name="ComputerName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="IPAddress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="EnterDateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ExitDateTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFamily" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="151" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Vw_product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductLastSuply" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProductLastFee" Type="Int64" />
+    <Property Name="ProductLastSuply" Type="Int32" Nullable="false" />
+    <Property Name="ProductImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductStartDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFamily" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="151" FixedLength="false" Unicode="false" />
+    <Property Name="ProductActive" Type="Byte" />
+    <Property Name="LastPurchFee" Type="Int64" />
+  </EntityType>
+  <EntityType Name="DataHistory">
+    <Key>
+      <PropertyRef Name="DataHistoryId" />
+    </Key>
+    <Property Name="DataHistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Id" Type="Int32" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+    <Property Name="ActionType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+    </Key>
+    <Property Name="InvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceDate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="InvoicePrice" Type="Int64" />
+    <Property Name="InvoiceDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerId" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="forooshModel.FK_CustomerID" FromRole="Invoice" ToRole="Customer" />
+    <Property Name="Userid" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="forooshModel.FK_invoice_userid" FromRole="Invoice" ToRole="User" />
+    <Property Name="InvoicePrice_purch" Type="Int64" />
+    <NavigationProperty Name="InvoiceItems" Relationship="forooshModel.FK_InvoiceID_invoiceitem" FromRole="Invoice" ToRole="InvoiceItem" />
+    <Property Name="InvoiceType" Type="Byte" />
+  </EntityType>
+  <Association Name="FK_CustomerID">
+    <End Type="forooshModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="forooshModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_invoice_userid">
+    <End Type="forooshModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="forooshModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="InvoiceItem">
+    <Key>
+      <PropertyRef Name="InvoiceItemId" />
+    </Key>
+    <Property Name="InvoiceItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceItemCount" Type="Int32" />
+    <Property Name="Productid" Type="Int32" />
+    <Property Name="InvoiceItemFeeSell" Type="Int64" />
+    <Property Name="InvoiceItemPurchFee" Type="Int64" />
+    <Property Name="Invoiceid" Type="Int32" />
+    <NavigationProperty Name="Invoice" Relationship="forooshModel.FK_InvoiceID_invoiceitem" FromRole="InvoiceItem" ToRole="Invoice" />
+    <NavigationProperty Name="Product" Relationship="forooshModel.FK_ProuctID_invoiceitem" FromRole="InvoiceItem" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_InvoiceID_invoiceitem">
+    <End Type="forooshModel.Invoice" Role="Invoice" Multiplicity="0..1" />
+    <End Type="forooshModel.InvoiceItem" Role="InvoiceItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceId" />
+      </Principal>
+      <Dependent Role="InvoiceItem">
+        <PropertyRef Name="Invoiceid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Vw_InvoiceItem">
+    <Key>
+      <PropertyRef Name="InvoiceItemId" />
+      <PropertyRef Name="ProductName" />
+    </Key>
+    <Property Name="Invoiceid" Type="Int32" />
+    <Property Name="InvoiceItemPurchFee" Type="Int64" />
+    <Property Name="InvoiceItemFeeSell" Type="Int64" />
+    <Property Name="Productid" Type="Int32" />
+    <Property Name="InvoiceItemId" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceItemCount" Type="Int32" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_ProuctID_invoiceitem">
+    <End Type="forooshModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="forooshModel.InvoiceItem" Role="InvoiceItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="InvoiceItem">
+        <PropertyRef Name="Productid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vw_invoice">
+    <Key>
+      <PropertyRef Name="InvoiceId" />
+      <PropertyRef Name="CustomerName" />
+    </Key>
+    <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceDate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="InvoicePrice" Type="Int64" />
+    <Property Name="InvoiceDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="Userid" Type="Int32" />
+    <Property Name="InvoicePrice_purch" Type="Int64" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserFamily" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerTell" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="151" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="InvoiceType" Type="Byte" />
+    <Property Name="InvoiceTypeFarsi" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="Sp_Foroosh_Chart_Result">
+    <Property Type="Int64" Name="TotalPrice" Nullable="true" />
+    <Property Type="String" Name="InvoiceDate" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="Sp_CustomerForooshChart_Result">
+    <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="100" />
+    <Property Type="Int64" Name="TotalPrice" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Sp_Productforooshchart_Result">
+    <Property Type="String" Name="ProductName" Nullable="false" MaxLength="1000" />
+    <Property Type="Int64" Name="TotalPrice" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

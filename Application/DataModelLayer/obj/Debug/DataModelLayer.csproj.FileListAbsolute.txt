@@ -1,0 +1,11 @@
+E:\system\foroosh\DataModelLayer\bin\Debug\DataModelLayer.dll.config
+E:\system\foroosh\DataModelLayer\bin\Debug\DataModelLayer.dll
+E:\system\foroosh\DataModelLayer\bin\Debug\DataModelLayer.pdb
+E:\system\foroosh\DataModelLayer\bin\Debug\EntityFramework.dll
+E:\system\foroosh\DataModelLayer\bin\Debug\EntityFramework.SqlServer.dll
+E:\system\foroosh\DataModelLayer\bin\Debug\EntityFramework.xml
+E:\system\foroosh\DataModelLayer\bin\Debug\EntityFramework.SqlServer.xml
+E:\system\foroosh\DataModelLayer\obj\Debug\DataModelLayer.dll
+E:\system\foroosh\DataModelLayer\obj\Debug\DataModelLayer.pdb
+E:\system\foroosh\DataModelLayer\obj\Debug\DataModelLayer.csprojResolveAssemblyReference.cache
+E:\system\foroosh\DataModelLayer\obj\Debug\DataModelLayer.csproj.CoreCompileInputs.cache
