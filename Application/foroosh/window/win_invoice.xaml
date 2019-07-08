@@ -1,0 +1,460 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:foroosh.window"
+        xmlns:PersianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls" x:Class="foroosh.window.win_invoice"
+        mc:Ignorable="d"
+        Title="win_invoice" Height="700" Width="1100" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded">
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="680" Margin="10,10,0,0" Stroke="#FF264CCE" VerticalAlignment="Top" Width="1080" RadiusX="10" RadiusY="10">
+            <Rectangle.Effect>
+                <DropShadowEffect/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="75" Margin="10,10,0,0" RadiusY="10" RadiusX="10" Stroke="#FF264CCE" VerticalAlignment="Top" Width="1080">
+            <Rectangle.Effect>
+                <DropShadowEffect/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Image HorizontalAlignment="Left" Height="70" Margin="10,10,0,0" VerticalAlignment="Top" Width="1080" Source="/img/title2.jpg" Stretch="Fill" Opacity="0.7">
+            <Image.Effect>
+                <DropShadowEffect/>
+            </Image.Effect>
+        </Image>
+        <Image HorizontalAlignment="Left" Height="18" Margin="40,32,0,0" VerticalAlignment="Top" Width="18" Source="/img/exit.png" RenderTransformOrigin="-0.456,0.311" Cursor="Hand" MouseDown="Image_MouseDown"/>
+        <Image HorizontalAlignment="Left" Height="70" Margin="963,10,0,0" VerticalAlignment="Top" Width="66" Source="/img/invoice.ico"/>
+        <Label Content="ثبت و صدور فاکتور" HorizontalAlignment="Left" Margin="475,32,0,0" VerticalAlignment="Top" FontFamily="B Yekan" FontSize="20"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="308" Margin="666,96,0,0" RadiusY="10" RadiusX="10" Stroke="#FF264CCE" VerticalAlignment="Top" Width="424">
+            <Rectangle.Effect>
+                <DropShadowEffect/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="231" Margin="18,446,0,0" RadiusY="10" RadiusX="10" Stroke="#FF264CCE" VerticalAlignment="Top" Width="638">
+            <Rectangle.Effect>
+                <DropShadowEffect/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="345" Margin="18,96,0,0" RadiusY="10" RadiusX="10" Stroke="#FF264CCE" VerticalAlignment="Top" Width="638">
+            <Rectangle.Effect>
+                <DropShadowEffect/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="268" Margin="666,409,0,0" RadiusY="10" RadiusX="10" Stroke="#FF264CCE" VerticalAlignment="Top" Width="424">
+            <Rectangle.Effect>
+                <DropShadowEffect/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Label Content="انتخاب مشتری" HorizontalAlignment="Left" Margin="846,97,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="84" FontFamily="B Yekan" FontSize="13">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.496"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.125"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <DataGrid x:Name="dataGrid_customer" HorizontalAlignment="Left" Height="199" Margin="669,127,0,0" VerticalAlignment="Top" Width="417" BorderBrush="#FF000102" Foreground="#FF2C2727" Background="{x:Null}" FlowDirection="RightToLeft" AutoGenerateColumns="False" VerticalGridLinesBrush="{x:Null}" HorizontalGridLinesBrush="#FF828282" >
+            <DataGrid.Effect>
+                <DropShadowEffect/>
+            </DataGrid.Effect>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="شماره مشتری" Binding="{Binding CustomerID}" >
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="نام مشتری" Binding="{Binding CustomerName}" Width="190" >
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="تلفن " Binding="{Binding CustomerTell}" Width="80">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+
+
+
+
+
+            </DataGrid.Columns>
+
+
+
+
+
+        </DataGrid>
+        <Label Content="نام مشتری :" HorizontalAlignment="Left" Margin="1002,331,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" RenderTransformOrigin="0.538,-0.12" FontFamily="B Yekan"/>
+        <Label Content="شماره تماس :" HorizontalAlignment="Left" Margin="1002,362,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" FontFamily="B Yekan"/>
+        <TextBox x:Name="txt_customername" HorizontalAlignment="Left" Height="23" Margin="851,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="txt_customertel" HorizontalAlignment="Left" Height="23" Margin="851,365,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="136" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" PreviewTextInput="txt_customertel_PreviewTextInput" MaxLength="11"/>
+        <Image x:Name="img_search" HorizontalAlignment="Left" Height="51" Margin="797,337,0,0" VerticalAlignment="Top" Width="43" Source="/img/search.ico" Cursor="Hand" MouseDown="img_search_MouseDown"/>
+        <Button x:Name="btn_newinvoice" Content="ایجاد فاکتور" HorizontalAlignment="Left" Margin="681,337,0,0" VerticalAlignment="Top" Width="100" Height="46" FontFamily="B Yekan" FontSize="16" Cursor="Hand" Click="btn_newinvoice_Click" >
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+
+        <PersianDateControls:PersianDatePicker Name="calendar" Visibility="Hidden" HorizontalAlignment="Left" Height="26" Margin="693,121,0,0" VerticalAlignment="Top" Width="88"/>
+        <Label Content="اطلاعات فاکتور" HorizontalAlignment="Left" Margin="973,412,0,0" VerticalAlignment="Top" FontFamily="B Yekan" FontSize="16" Foreground="#FF279C31"/>
+        <Label Content="کاربر ثبت کننده" HorizontalAlignment="Left" Margin="993,439,0,0" VerticalAlignment="Top" FontFamily="B Yekan" Foreground="#FF2A3CA0" FontSize="14"/>
+        <Label Content="تاریخ" HorizontalAlignment="Left" Margin="1040,477,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.552,0.75" FontFamily="B Yekan" Foreground="#FF2A3CA0" FontSize="14"/>
+        <Label Content="نام مشتری" HorizontalAlignment="Left" Margin="1015,514,0,0" VerticalAlignment="Top" FontFamily="B Yekan" Foreground="#FF2A3CA0" FontSize="14"/>
+        <Label Content="شماره فاکتور" HorizontalAlignment="Left" Margin="1005,551,0,0" VerticalAlignment="Top" FontFamily="B Yekan" Foreground="#FF2A3CA0" FontSize="14"/>
+        <Label Content=" مبلغ فاکتور فروش" HorizontalAlignment="Left" Margin="973,595,0,0" VerticalAlignment="Top" FontFamily="B Yekan" Foreground="#FF2A3CA0" FontSize="14"/>
+        <Label x:Name="lbl_username" Content="..." HorizontalAlignment="Left" Margin="820,439,0,0" VerticalAlignment="Top" Width="141" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="B Yekan" FontSize="14" Foreground="#FF3244AB"/>
+        <Label x:Name="lbl_date" Content="..." HorizontalAlignment="Left" Margin="820,477,0,0" VerticalAlignment="Top" Width="141" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="B Yekan" FontSize="14" Foreground="#FF3244AB"/>
+        <Label x:Name="lbl_customername" Content="..." HorizontalAlignment="Left" Margin="820,521,0,0" VerticalAlignment="Top" Width="141" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="B Yekan" FontSize="14" Foreground="#FF3244AB"/>
+        <Label x:Name="lbl_invoiceNo" Content="0" HorizontalAlignment="Left" Margin="820,559,0,0" VerticalAlignment="Top" Width="141" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="B Yekan" FontSize="14" Foreground="#FF3244AB"/>
+        <Label x:Name="lbl_InvoicePrice" Content="0" HorizontalAlignment="Left" Margin="820,595,0,0" VerticalAlignment="Top" Width="141" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="B Yekan" FontSize="14" Foreground="#FF3244AB"/>
+        <Label Content="انتخاب مشتری" HorizontalAlignment="Left" Margin="521,98,0,0" VerticalAlignment="Top" FontFamily="B Yekan" FontSize="14"/>
+        <Label Content="کاربر گرامی ، بعد از انتخاب مشتری جهت ثبت اقلام بر روی جدول زیر کلیک کنید." HorizontalAlignment="Left" Margin="134,96,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" FontFamily="B Yekan" Foreground="#FF0C3485"/>
+        <DataGrid x:Name="dataGrid_product" HorizontalAlignment="Left" Height="199" Margin="33,127,0,0" VerticalAlignment="Top" Width="623" BorderBrush="#FF000102" Foreground="#FF2C2727" Background="{x:Null}" FlowDirection="RightToLeft" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF9F9C9C" VerticalGridLinesBrush="#FF9F9C9C" >
+            <DataGrid.Effect>
+                <DropShadowEffect/>
+            </DataGrid.Effect>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="شماره کالا " Binding="{Binding ProductId}" Width="102" >
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="نام کالا" Binding="{Binding ProductName}" Width="180" >
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header=" آخرین قیمت فروش" Binding="{Binding ProductLastFee}" Width="110">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header=" آخرین قیمت خرید" Binding="{Binding LastPurchFee}" Width="110">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+
+                <DataGridTextColumn Header="آخرین موجودی " Binding="{Binding ProductLastSuply}" Width="110">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Header="تصویر" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Width="70" Height="40" Source="{Binding ProductImage}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+
+
+                </DataGridTemplateColumn>
+
+
+
+
+
+
+
+
+
+
+            </DataGrid.Columns>
+
+
+
+        </DataGrid>
+        <Label  Content="نام کالا :" HorizontalAlignment="Left" Margin="594,346,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" FontFamily="B Yekan"/>
+        <Label Content="کالای انتخاب شده :" HorizontalAlignment="Left" Margin="332,382,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" FontFamily="B Yekan"/>
+        <Label Content="تعداد :" HorizontalAlignment="Left" Margin="153,347,0,0" VerticalAlignment="Top" Width="47" FlowDirection="RightToLeft" FontFamily="B Yekan"/>
+        <Label Content="تعداد موجود :" HorizontalAlignment="Left" Margin="354,407,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" FontFamily="B Yekan"/>
+        <Label Content="قیمت :" HorizontalAlignment="Left" Margin="363,351,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" FontFamily="B Yekan"/>
+        <Button x:Name="btn_sabtekala" Content="ثبت کالا" HorizontalAlignment="Left" Margin="88,389,0,0" VerticalAlignment="Top" Width="64" Height="32" FontFamily="B Yekan" FontSize="16" Cursor="Hand" Click="btn_sabtekala_click" >
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="btn_selectProduct" Content="انتخاب " HorizontalAlignment="Left" Margin="501,389,0,0" VerticalAlignment="Top" Width="68" Height="33" FontFamily="B Yekan" FontSize="13" Cursor="Hand" Click="btn_selectProduct_Click">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <TextBox x:Name="txt_searchproduct" HorizontalAlignment="Left" Height="23" Margin="469,349,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="txt_productcountorder" HorizontalAlignment="Left" Height="23" Margin="78,349,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="74" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" PreviewTextInput="txt_productcountorder_PreviewTextInput"/>
+        <Label x:Name="lbl_productname" Content="..." HorizontalAlignment="Left" Margin="244,382,0,0" VerticalAlignment="Top" FontFamily="B Yekan" Width="88" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="lbl_product_stock" Content="..." HorizontalAlignment="Left" Margin="248,408,0,0" VerticalAlignment="Top" FontFamily="B Yekan" Width="88" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lbl_productprice" Content="..." HorizontalAlignment="Left" Margin="271,352,0,0" VerticalAlignment="Top" FontFamily="B Yekan" Width="79" HorizontalContentAlignment="Center"/>
+        <Image x:Name="image_searchProduct" HorizontalAlignment="Left" Height="34" Margin="592,390,0,0" VerticalAlignment="Top" Width="46" Cursor="Hand" Source="/img/search.ico" MouseDown="image_searchProduct_MouseDown"/>
+        <Rectangle Fill="#FF727282" HorizontalAlignment="Left" Height="90" Margin="440,343,0,0" RadiusY="10" RadiusX="10" Stroke="#FF264CCE" VerticalAlignment="Top" Width="8"/>
+        <Label Content="کالاهای سفارش داده شده " HorizontalAlignment="Left" Margin="510,448,0,0" VerticalAlignment="Top" FontFamily="B Yekan" FontSize="14"/>
+        <DataGrid x:Name="datagrid_productorder" HorizontalAlignment="Left" Height="142" Margin="33,480,0,0" VerticalAlignment="Top" Width="623" BorderBrush="#FF000102" Foreground="#FF2C2727" Background="{x:Null}" FlowDirection="RightToLeft" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF9F9C9C" VerticalGridLinesBrush="#FF9F9C9C" >
+            <DataGrid.Effect>
+                <DropShadowEffect/>
+            </DataGrid.Effect>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="شماره کالا " Binding="{Binding Productid}" Width="102" >
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="نام کالا" Binding="{Binding ProductName}" Width="180" >
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header=" آخرین قیمت فروش" Binding="{Binding InvoiceItemFeeSell}" Width="110">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header=" آخرین قیمت خرید" Binding="{Binding InvoiceItemPurchFee}" Width="110">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header=" تعداد درخواستی " Binding="{Binding InvoiceItemCount}" Width="110">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </DataGrid.Columns>
+
+
+
+        </DataGrid>
+        <Button x:Name="btn_del" Content="حذف کالا" HorizontalAlignment="Left" Margin="521,631,0,0" VerticalAlignment="Top" Width="68" Height="32" FontFamily="B Yekan" FontSize="16" Cursor="Hand" Click="btn_del_Click" >
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <Label x:Name="lbl_productid" Visibility="Hidden" Content="..." HorizontalAlignment="Left" Margin="244,545,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_closeinvoice" Content="بستن فاکتور  " HorizontalAlignment="Left" Margin="163,631,0,0" VerticalAlignment="Top" Width="115" Height="32" FontFamily="B Yekan" FontSize="16" Cursor="Hand" Click="btn_closeinvoice_Click">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <Label Content="مبلغ فاکتور خرید" HorizontalAlignment="Left" Margin="986,623,0,0" VerticalAlignment="Top" FontFamily="B Yekan" Foreground="#FF2A3CA0" FontSize="14"/>
+        <Label x:Name="lbl_invoiceprice_purch" Content="0" HorizontalAlignment="Left" Margin="820,623,0,0" VerticalAlignment="Top" Width="141" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="B Yekan" FontSize="14" Foreground="#FF3244AB"/>
+        <Label x:Name="lbl_productprice_purch" Visibility="Hidden" Content="..." HorizontalAlignment="Left" Margin="244,450,0,0" VerticalAlignment="Top" FontFamily="B Yekan" Width="79" HorizontalContentAlignment="Center"/>
+
+    </Grid>
+</Window>

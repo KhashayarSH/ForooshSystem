@@ -1,0 +1,97 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:foroosh.window"
+        xmlns:Custom="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon" xmlns:PersianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls" x:Class="foroosh.window.win_main"
+        mc:Ignorable="d"
+        Title="" Height="640" Width="1200" WindowStartupLocation="CenterScreen" Closing="Window_Closing" WindowStyle="ToolWindow" Loaded="Window_Loaded" >
+    <Grid>
+        <Custom:Ribbon x:Name="Ribbon" HorizontalAlignment="Left" Height="135" VerticalAlignment="Top" Width="1194" FlowDirection="RightToLeft" FontFamily="B yekan" FontSize="12" >
+            <Custom:Ribbon.QuickAccessToolBar>
+                <Custom:RibbonQuickAccessToolBar>
+                    <Custom:RibbonSplitButton SmallImageSource="/img/advanced.tiff">
+                        <Custom:RibbonSplitMenuItem Header="درباره ما" ImageSource="/img/12.png" />
+                        <Custom:RibbonSplitMenuItem Header="ارتباط با ما" ImageSource="/img/send.png" Click="btn_ErtebatBama_click" />
+                        <Custom:RibbonSplitMenuItem Header="خروج" ImageSource="/img/exit.png" Click="btn_exit_click" />
+                    </Custom:RibbonSplitButton>
+                </Custom:RibbonQuickAccessToolBar>
+            </Custom:Ribbon.QuickAccessToolBar>
+
+
+            <Custom:Ribbon.ApplicationMenu>
+                <Custom:RibbonApplicationMenu>
+
+                    <Custom:RibbonApplicationMenuItem Header="تعریف کاربران" ImageSource="/img/44.png" Click="btn_ShowUser_click" />
+                    <Custom:RibbonApplicationMenuItem Header="تعریف دسترسی کاربران" ImageSource="/img/advanced.tiff" />
+                    <Custom:RibbonApplicationMenuItem Header="تغییر کلمه عبور" ImageSource="/img/2.png" Click="btn_SetnewPass_click" />
+                    <Custom:RibbonApplicationMenuItem Header="تعریف اجزای سیستم" ImageSource="/img/ajza.png"  Click="btn_addsystempart_click" />
+                    <Custom:RibbonApplicationMenuItem Header="تعریف مشتریان" ImageSource="/img/customer.png" Click="btn_ShowCustomer_click"/>
+                    <Custom:RibbonApplicationMenuItem Header=" کنترل ورود و خروج کاربران" ImageSource="/img/2.png" Click="btn_enterexit" />
+                    <Custom:RibbonApplicationMenuItem Header="تهیه فایل پشتیبان" ImageSource="/img/server.png" />
+
+                </Custom:RibbonApplicationMenu>
+            </Custom:Ribbon.ApplicationMenu>
+
+            <Custom:RibbonTab Header="کالاها" Height="100" >
+                <Custom:RibbonGroup>
+                    <Custom:RibbonButton Label="نمایش کالاها" LargeImageSource="/img/product2.gif" Margin="10,0,0,0" Click="btn_showProduct_Click" />
+                </Custom:RibbonGroup>
+                <Custom:RibbonGroup Header="بخش کالاها" Height="80" Margin="0,0,0,10">
+                    <Custom:RibbonButton Label="مدیریت قیمت " SmallImageSource="/img/13.png" Margin="0,0,10,15" />
+                    <Custom:RibbonButton Label="موجودی کالا " SmallImageSource="/img/4.png"/>
+                    <Custom:RibbonButton Label="نمودار فروش " SmallImageSource="/img/nemudar.png"  Click="btn_chartwindows_click"/>
+
+                </Custom:RibbonGroup>
+            </Custom:RibbonTab>
+
+            <Custom:RibbonTab Header="فروش" Height="100" >
+                <Custom:RibbonGroup>
+                    <Custom:RibbonButton Label="ثبت سفارشات" LargeImageSource="/img/add-icon.png" Margin="10,0,0,0" Click="btn_invoicewin_click" />
+                </Custom:RibbonGroup>
+                <Custom:RibbonGroup Header="فاکتور" Height="80" Margin="0,0,0,10">
+                    <Custom:RibbonButton Label="مشاهده فاکتور " SmallImageSource="/img/13.png" Click="btn_ShowAllInvoice_click" />
+                    <Custom:RibbonButton Label="گزارش فروش " SmallImageSource="/img/4.png" Click="btn_showreport_click" />
+                    <Custom:RibbonButton Label="گزارش بر اساس مشتری " SmallImageSource="/img/send.png"/>
+                    <Custom:RibbonButton Label="گزارش بر اساس فاکتور " SmallImageSource="/img/21.png"/>
+                    <Custom:RibbonButton Label="گزارش بر حسب کالا " SmallImageSource="/img/dastresi.png"/>
+                    <Custom:RibbonButton Label="گزارش بر حسب کاربر " SmallImageSource="/img/44.png"/>
+                    <Custom:RibbonButton Label="گزارش بر حسب سود و زیان " SmallImageSource="/img/13.png"/>
+                    <Custom:RibbonButton Label="نمودار فروش" SmallImageSource="/img/nemudar.png"/>
+
+                </Custom:RibbonGroup>
+            </Custom:RibbonTab>
+
+            <Custom:RibbonTab Header="انبارداری" Height="100" />
+
+            <Custom:RibbonTab Header="گزارشات" Margin="0,0,0,-0.2" >
+                <Custom:RibbonGroup>
+                    <Custom:RibbonButton Label="گزارشات پایه " LargeImageSource="/img/report.png" Margin="10,0,0,0" Click="btn_ShowReporstList_click" />
+                </Custom:RibbonGroup>
+                <Custom:RibbonGroup Header="فاکتور" Height="80" Margin="0,0,0,10">
+                    <Custom:RibbonButton Label="مشاهده فاکتور " SmallImageSource="/img/13.png" Click="btn_ShowAllInvoice_click" />
+                    <Custom:RibbonButton Label="گزارش فروش " SmallImageSource="/img/4.png" Click="btn_showreport_click" />
+                    <Custom:RibbonButton Label="گزارش بر اساس مشتری " SmallImageSource="/img/send.png"/>
+                    <Custom:RibbonButton Label="گزارش بر اساس فاکتور " SmallImageSource="/img/21.png"/>
+                    <Custom:RibbonButton Label="گزارش بر حسب کالا " SmallImageSource="/img/dastresi.png"/>
+                    <Custom:RibbonButton Label="گزارش بر حسب کاربر " SmallImageSource="/img/44.png"/>
+                    <Custom:RibbonButton Label="گزارش بر حسب سود و زیان " SmallImageSource="/img/13.png"/>
+                    <Custom:RibbonButton Label="نمودار فروش" SmallImageSource="/img/nemudar.png"/>
+
+                </Custom:RibbonGroup>
+            </Custom:RibbonTab>
+
+        </Custom:Ribbon>
+        <Image HorizontalAlignment="Left" Height="415" Margin="0,135,-0.4,0" VerticalAlignment="Top" Width="1194" Source="/img/1x.jpg" Stretch="Fill" Opacity="0.9" />
+        <DockPanel HorizontalAlignment="Left" Height="60" LastChildFill="False" Margin="0,550,-0.4,0" VerticalAlignment="Top" Width="1194" Background="#FFD0F2EB"/>
+        <Label  Content="نام کاربر:" HorizontalAlignment="Left" Margin="1113,561,0,0" VerticalAlignment="Top" FontFamily="B Yekan" FontSize="17" Height="35" FlowDirection="RightToLeft"/>
+        <Label x:Name="lbl_name" Content="..." HorizontalAlignment="Left" Margin="1069,561,0,0" VerticalAlignment="Top" FontFamily="B Yekan" FontSize="17" Height="35"/>
+        <Label x:Name="label2" Content=" نام خانوادگی: " HorizontalAlignment="Left" Margin="946,561,0,0" VerticalAlignment="Top" FontFamily="B Yekan" FontSize="17" Height="35" FlowDirection="RightToLeft" />
+        <Label x:Name="lbl_family" Content="..." HorizontalAlignment="Left" Margin="896,561,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.847,0.438" FontFamily="B Yekan" FontSize="17" Height="35"/>
+        <Label x:Name="label4" Content="ساعت ورود :" HorizontalAlignment="Left" Margin="606,563,0,0" VerticalAlignment="Top" RenderTransformOrigin="-16.422,9" FontFamily="B Yekan" FontSize="17" Height="35" FlowDirection="RightToLeft"/>
+        <Label x:Name="lbl_time" Content="18:06" HorizontalAlignment="Left" Margin="547,563,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontFamily="B Yekan" FontSize="17" />
+        <Label Content="فروش و انبارداری" HorizontalAlignment="Left" Margin="19,552,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="B Esfehan" FontWeight="Bold"/>
+        <PersianDateControls:PersianDatePicker x:Name="calender" Visibility="Hidden" HorizontalAlignment="Left" Height="100" Margin="501,359,0,0" VerticalAlignment="Top" Width="100"/>
+    </Grid>
+</Window>

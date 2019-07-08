@@ -1,0 +1,174 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:foroosh.window"
+        xmlns:PersianDateControls="clr-namespace:Arash.PersianDateControls;assembly=PersianDateControls" x:Class="foroosh.window.win_inventory"
+        mc:Ignorable="d"
+        Title="win_inventory" Height="567.2" Width="670" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="Transparent" AllowsTransparency="True" Loaded="Window_Loaded"  >
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard>
+                <Storyboard Duration="00:01" Storyboard.TargetProperty="Opacity">
+                    <DoubleAnimation From=" 0" To=" 3"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <Rectangle Fill="#FF92CB7F" HorizontalAlignment="Left" Height="557" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="642" RadiusX="20" RadiusY="20" />
+        <Rectangle HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" RadiusY="20" RadiusX="20" Stroke="Black" VerticalAlignment="Top" Width="631" Fill="#FF149A29" MouseDown="Rectangle_MouseDown"/>
+        <Label Content="فرم تاریخچه ورود و خروج کالا " HorizontalAlignment="Left" Margin="417,41,0,0" VerticalAlignment="Top" Height="39" Width="203" FontFamily="B Yekan" FontSize="18"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="131,143,0,0" VerticalAlignment="Top" Width="100"/>
+        <Image x:Name="imge_close" HorizontalAlignment="Left" Height="39" Margin="24,25,0,0" VerticalAlignment="Top" Width="44" Source="/img/no.png" Cursor="Hand" MouseDown="imge_close_MouseDown" />
+        <Image  HorizontalAlignment="Left" Height="70" Margin="302,25,0,0" VerticalAlignment="Top" Width="61" Source="/img/stock-market.png"/>
+        <DataGrid x:Name="dataGrid_inventory" HorizontalAlignment="Left" Height="251" Margin="24,158,0,0" VerticalAlignment="Top" Width="611" BorderBrush="#FF000102" Foreground="#FF2C2727" Background="{x:Null}" FlowDirection="RightToLeft" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF9F9C9C" VerticalGridLinesBrush="#FF9F9C9C" >
+            <DataGrid.Effect>
+                <DropShadowEffect/>
+            </DataGrid.Effect>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header=" کد تراکنش  " Binding="{Binding InventoryID}" >
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="  نحوه تاثیر" Binding="{Binding status}" Width="70" >
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="تعداد تاثیر " Binding="{Binding InventoryCount}" Width="80">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="  تاریخ تراکنش" Binding="{Binding InventoryDate}" Width="80">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header=" توضیحات  " Binding="{Binding InventoryDesc}" Width="140">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header=" کاربر ثبت کننده   " Binding="{Binding FullName}" Width="100">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontFamily" Value="B Yekan" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontFamily" Value="B Yekan"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button x:Name="btn_newTrans" Content=" ثبت تراکنش جدید" HorizontalAlignment="Left" Margin="360,502,0,0" VerticalAlignment="Top" Width="120" Height="40" Background="White" FontWeight="Bold" Cursor="Hand" Foreground="Black" Click="btn_newTrans_Click" >
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="btn_exit" Content="خروج" HorizontalAlignment="Left" Margin="219,502,0,0" VerticalAlignment="Top" Width="120" Height="40" FontWeight="Bold" Cursor="Hand" Foreground="Black" Click="btn_exit_Click" >
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        <Rectangle Fill="#FF92CB7F" HorizontalAlignment="Left" Height="79" Margin="24,418,0,0" RadiusY="20" RadiusX="20" Stroke="#FF777575" VerticalAlignment="Top" Width="617"/>
+        <Label Content="جستجو" HorizontalAlignment="Left" Margin="572,433,0,0" VerticalAlignment="Top" FontFamily="B Yekan" FontSize="15"/>
+        <Label Content="از تاریخ:" HorizontalAlignment="Left" Margin="523,432,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
+        <Label Content="تا تاریخ:" HorizontalAlignment="Left" Margin="525,459,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
+        <TextBox x:Name="txt_username" HorizontalAlignment="Left" Height="23" Margin="131,428,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="114"/>
+        <Label Content="کاربر ثبت کننده  :" HorizontalAlignment="Left" Margin="250,428,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.601,0.427" FlowDirection="RightToLeft"/>
+        <PersianDateControls:PersianDatePicker Name="calendar_az" HorizontalAlignment="Left" Height="24" Margin="428,435,0,0" VerticalAlignment="Top" Width="92" BorderBrush="#FF92CB7F" DisplayDate="1390/1/1" SelectedDate="1390/1/1"/>
+        <PersianDateControls:PersianDatePicker Name="calendar_ta" HorizontalAlignment="Left" Height="21" Margin="428,464,0,0" VerticalAlignment="Top" Width="92" BorderBrush="#FF92CB7F"/>
+        <Image x:Name="image_search" HorizontalAlignment="Left" Height="50" Margin="48,435,0,0" VerticalAlignment="Top" Width="51" Stretch="Fill" Source="/img/search.ico" Cursor="Hand" MouseDown="image_search_MouseDown"/>
+        <Label x:Name="lbl_productname" Content="..." HorizontalAlignment="Left" Margin="265,121,0,0" VerticalAlignment="Top" Width="153" FlowDirection="RightToLeft" FontFamily="B Yekan" FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center" />
+        <Label Content="نحوه تاثیر :" HorizontalAlignment="Left" Margin="275,464,0,0" VerticalAlignment="Top" FlowDirection="RightToLeft" />
+        <ComboBox x:Name="cmb_type" HorizontalAlignment="Left" Margin="131,464,0,0" VerticalAlignment="Top" Width="114" FlowDirection="RightToLeft" />
+
+    </Grid>
+</Window>
